@@ -10,7 +10,7 @@ const getEndpoint = () => {
     if (hostname.endsWith('monochrome.tf') || hostname === 'monochrome.tf') {
         return 'https://auth.monochrome.tf/v1';
     }
-    return 'https://auth.samidy.com/v1';
+    return 'https://fra.cloud.appwrite.io/v1';
 };
 
 const getProject = () => {
@@ -19,7 +19,7 @@ const getProject = () => {
 
     if (window.__APPWRITE_PROJECT_ID__) return window.__APPWRITE_PROJECT_ID__;
 
-    return 'auth-for-monochrome';
+    return '69ffc51c0033c3455ae9';
 };
 
 const client = new Client().setEndpoint(getEndpoint()).setProject(getProject());
