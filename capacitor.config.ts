@@ -11,7 +11,7 @@ const config: CapacitorConfig = {
   plugins: {
     GoogleAuth: {
       scopes: ['profile', 'email'],
-      serverClientId: 'WEB_CLIENT_ID_KAMU.apps.googleusercontent.com',
+      serverClientId: '707309494548-m4bshr784jpobmrc73ejtmdkja54bpt3.apps.googleusercontent.com',
       forceCodeForRefreshToken: true
     }
   }
