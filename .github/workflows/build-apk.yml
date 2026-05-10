@@ -27,7 +27,9 @@ jobs:
         run: bun run build
 
       - name: Install Capacitor CLI
-        run: bun add -d @capacitor/cli
+        run: |
+          bun add -d @capacitor/cli
+          bun add @capacitor/browser
 
       - name: Sync Capacitor
         run: bunx cap sync android
