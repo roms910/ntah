@@ -65,9 +65,9 @@
         "serialize-javascript": "^7.0.3"
     },
     "dependencies": {
-        "@capacitor/android": "^8.2.0",
+        "@capacitor/android": "^8.3.3",
         "@capacitor/app": "^8.0.1",
-        "@capacitor/core": "^8.2.0",
+        "@capacitor/core": "^8.3.3",
         "@capacitor/haptics": "^8.0.1",
         "@capacitor/ios": "^8.2.0",
         "@capgo/capacitor-media-session": "^8.0.19",
