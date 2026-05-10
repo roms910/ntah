@@ -28,8 +28,8 @@ jobs:
 
       - name: Install Capacitor CLI
         run: |
-          bun add -d @capacitor/cli
-          bun add @capacitor/browser
+          bun add -d @capacitor/cli --no-frozen-lockfile
+          bun add @capacitor/browser --no-frozen-lockfile
 
       - name: Sync Capacitor
         run: bunx cap sync android
