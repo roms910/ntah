@@ -10,20 +10,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: '18'
-          cache: ''
+          bun-version: latest
 
       - name: Install dependencies
-        run: npm install --ignore-scripts --no-package-lock
+        run: bun install --no-frozen-lockfile
 
       - name: Build web
-        run: npm run build
+        run: bun run build
 
       - name: Sync Capacitor
-        run: npx cap sync android
+        run: bunx cap sync android
 
       - name: Setup Java
         uses: actions/setup-java@v3
