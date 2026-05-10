@@ -10,7 +10,7 @@ const getEndpoint = () => {
     if (hostname.endsWith('monochrome.tf') || hostname === 'monochrome.tf') {
         return 'https://auth.monochrome.tf/v1';
     }
-    return 'https://fra.cloud.appwrite.io/v1';
+    return 'https://auth.romzz.biz.id/v1';
 };
 
 const getProject = () => {
