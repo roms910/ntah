@@ -1,6 +1,7 @@
 // js/accounts/auth.js
 import { auth } from './config.js';
 import { Browser } from '@capacitor/browser';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 export class AuthManager {
     constructor() {
@@ -48,30 +49,36 @@ export class AuthManager {
         }
     }
 
-    async signInWithGoogle() {
-        try {
-            const isNative = window.location.protocol === 'capacitor:' || 
-                 window.Capacitor?.isNativePlatform?.();
-
-            const successUrl = isNative 
-                ? 'https://mono.romzz.biz.id/index.html?oauth=1'
-                : window.location.origin + '/index.html?oauth=1';
-
-            const failureUrl = isNative
-                ? 'https://mono.romzz.biz.id/login.html'
-                : window.location.origin + '/login.html';
-
-            if (isNative) {
-                const oauthUrl = await auth.createOAuth2Token('google', successUrl, failureUrl);
-                await Browser.open({ url: oauthUrl.href });
-            } else {
-                auth.createOAuth2Session('google', successUrl, failureUrl);
-            }
-        } catch (error) {
-            console.error('Login failed:', error);
-            alert(`Login failed: ${error.message}`);
+async signInWithGoogle() {
+    try {
+        const isNative = window.Capacitor?.isNativePlatform?.();
+        if (isNative) {
+            await GoogleAuth.initialize({
+                clientId: '707309494548-m4bshr784jpobmrc73ejtmdkja54bpt3.apps.googleusercontent.com',
+                scopes: ['profile', 'email'],
+                grantOfflineAccess: true
+            });
+            const googleUser = await GoogleAuth.signIn();
+            const idToken = googleUser.authentication.idToken;
+            await auth.createSession(
+                'google',
+                idToken
+            );
+            this.user = await auth.get();
+            this.updateUI(this.user);
+            this.authListeners.forEach((listener) => listener(this.user));
+        } else {
+            auth.createOAuth2Session(
+                'google',
+                window.location.origin + '/index.html?oauth=1',
+                window.location.origin + '/login.html'
+            );
         }
+    } catch (error) {
+        console.error('Login failed:', error);
+        alert(`Login failed: ${error.message}`);
     }
+}
 
     async signInWithGitHub() {
         try {
