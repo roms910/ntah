@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1019804831902",
+    "project_id": "p66sepi",
+    "storage_bucket": "p66sepi.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019804831902:android:13ca17c2e8235732566b8f",
+        "android_client_info": {
+          "package_name": "com.romzz.music"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_N6tXfhAsnWrCX4IXYm8J0CKSP4lQVqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

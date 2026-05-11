@@ -51,19 +51,13 @@ export class AuthManager {
 
 async signInWithGoogle() {
     try {
-        const isNative = window.Capacitor?.isNativePlatform?.();
-        if (isNative) {
-            await GoogleAuth.initialize({
-                clientId: '707309494548-m4bshr784jpobmrc73ejtmdkja54bpt3.apps.googleusercontent.com',
-                scopes: ['profile', 'email'],
-                grantOfflineAccess: true
+        const { Capacitor, registerPlugin } = await import('@capacitor/core');
+        if (Capacitor.isNativePlatform()) {
+            const GoogleSignIn = registerPlugin('GoogleSignIn');
+            const result = await GoogleSignIn.signIn({
+                webClientId: '707309494548-m4bshr784jpobmrc73ejtmdkja54bpt3.apps.googleusercontent.com'
             });
-            const googleUser = await GoogleAuth.signIn();
-            const idToken = googleUser.authentication.idToken;
-            await auth.createSession(
-                'google',
-                idToken
-            );
+            await auth.createSession('google', result.idToken);
             this.user = await auth.get();
             this.updateUI(this.user);
             this.authListeners.forEach((listener) => listener(this.user));
